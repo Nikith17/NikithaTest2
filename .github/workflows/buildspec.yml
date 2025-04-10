@@ -1,0 +1,33 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+    commands:
+      # Install dependencies
+      - echo Installing dependencies...
+      - npm install
+
+  pre_build:
+    commands:
+      # Run tests (if any)
+      - echo Running pre-build tasks...
+      - npm run test
+
+  build:
+    commands:
+      # Run the build command (if you have a build process)
+      - echo Building the project...
+      - npm run build
+
+  post_build:
+    commands:
+      # After build tasks, such as packaging or deployment
+      - echo Build completed on `date`
+      - echo Deploying to S3/other services...
+
+artifacts:
+  files:
+    - '**/*'  # Specify the files to include in the build artifact (this can be adjusted for your app)
+  discard-paths: yes
